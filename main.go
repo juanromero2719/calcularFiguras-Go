@@ -11,11 +11,7 @@ func main() {
 	fc := funciones.NuevaFuncionCuadratica(1, -3, 2)
 
 	// Calcular las raíces de la ecuación cuadrática
-	x1, x2, err := fc.CalcularFuncionCuadratica()
-	if err != nil {
-		fmt.Println("Error al calcular la función cuadrática:", err)
-		return
-	}
+	x1, x2 := fc.CalcularFuncionCuadratica()
 
 	// Imprimir los resultados
 	fmt.Println("Raíz 1:", x1)

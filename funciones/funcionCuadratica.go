@@ -16,14 +16,10 @@ func NuevaFuncionCuadratica(a, b, c float64) *FuncionCuadratica {
 	}
 }
 
-func CalcularFuncionCuadratica(a, b, c float64) (float64, float64, error) {
-	discriminante := b*b - 4*a*c
+func (f *FuncionCuadratica) CalcularFuncionCuadratica() (float64, float64) {
+	discriminante := f.B*f.B - 4*f.A*f.C
 	raizDiscriminante := math.Sqrt(discriminante)
-	x1 := (-b + raizDiscriminante) / (2 * a)
-	x2 := (-b - raizDiscriminante) / (2 * a)
-	return x1, x2, nil
-}
-
-func (f FuncionCuadratica) CalcularFuncionCuadratica() (float64, float64, error) {
-	return CalcularFuncionCuadratica(f.A, f.B, f.C)
+	x1 := (-f.B + raizDiscriminante) / (2 * f.A)
+	x2 := (-f.B - raizDiscriminante) / (2 * f.A)
+	return x1, x2
 }
