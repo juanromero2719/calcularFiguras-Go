@@ -7,10 +7,9 @@ import (
 )
 
 func main() {
-	// Crear un objeto de tipo FuncionCuadratica
-	fc := funciones.NuevaFuncionCuadratica(1, -3, 2)
 
-	// Calcular las raíces de la ecuación cuadrática
+	// funcion cuadratica
+	fc := funciones.NuevaFuncionCuadratica(1, -3, 2)
 	x1, x2 := fc.CalcularFuncionCuadratica()
 
 	// Imprimir los resultados
