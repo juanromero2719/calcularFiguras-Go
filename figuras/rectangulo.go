@@ -15,3 +15,7 @@ func NuevoRectangulo(base, altura float64) *Rectangulo {
 func (t Rectangulo) CalculateArea() float64 {
 	return t.Base * t.Altura
 }
+
+func (t Rectangulo) CalcularPerimetro() float64 {
+	return 2 * (t.Base + t.Altura)
+}

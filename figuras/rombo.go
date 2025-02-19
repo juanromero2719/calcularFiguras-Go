@@ -16,3 +16,7 @@ func (t Rombo) CalculateArea() float64 {
 	return (t.DiagonalMayor * t.DiagonalMenor) / 2
 
 }
+
+func (t Rombo) CalcularPerimetro() float64 {
+	return 4 * t.DiagonalMayor
+}
