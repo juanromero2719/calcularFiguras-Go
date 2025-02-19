@@ -16,3 +16,7 @@ func (t Pentagono) CalculateArea() float64 {
 	perimetro := 5 * t.Lado
 	return ((perimetro * t.Apotema) / 2)
 }
+
+func (t Pentagono) CalcularPerimetro() float64 {
+	return t.Lado * 5
+}

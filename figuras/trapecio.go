@@ -17,3 +17,7 @@ func NuevoTrapecio(baseInferior, baseSuperior, altura float64) *Trapecio {
 func (t Trapecio) CalculateArea() float64 {
 	return ((t.BaseInferior + t.BaseSuperior) / 2) * t.Altura
 }
+
+func (t Trapecio) CalcularPerimetro() float64 {
+	return t.BaseInferior + t.BaseSuperior + 2*t.Altura
+}
