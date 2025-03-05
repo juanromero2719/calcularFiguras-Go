@@ -19,10 +19,14 @@ func (v *VistasCalculadora) MostrarMenu() {
 	fmt.Println("Menu de Operaciones")
 	fmt.Println("1. Calcular area y perimetro de figuras")
 	fmt.Println("2. Calcular funcion cuadratica")
-	fmt.Println("3. Salir")
+	fmt.Println("3. Verificar si es palindromo")
+	fmt.Println("4. Generar arreglo")
+	fmt.Println("5. Calcular estadisticas")
+	fmt.Println("6. arreglo ordenados")
+	fmt.Println("7. Salir")
 	fmt.Scanln(&opcion)
 
-	if opcion <= 0 || opcion > 3 {
+	if opcion <= 0 || opcion > 7 {
 		fmt.Println("Opcion no valida")
 		v.MostrarMenu()
 		return
@@ -34,6 +38,14 @@ func (v *VistasCalculadora) MostrarMenu() {
 	case 2:
 		MenuCuadratica(v)
 	case 3:
+		MenuPalindromo(v)
+	case 4:
+		GenerarArreglo(v)
+	case 5:
+		CalcularEstadisticas(v)
+	case 6:
+		OrdenarArreglo(v)
+	case 7:
 		fmt.Println("Hasta luego")
 		return
 	}
@@ -57,7 +69,7 @@ func MenuOperacionesFiguras(v *VistasCalculadora) {
 	if opcion <= 0 || opcion > 10 {
 		fmt.Println("Opcion no valida")
 		MenuOperacionesFiguras(v)
-		return // Asegura que no se siga ejecutando el menú
+		return
 	}
 
 	switch opcion {
@@ -85,19 +97,18 @@ func MenuOperacionesFiguras(v *VistasCalculadora) {
 }
 
 func MenuCuadratica(v *VistasCalculadora) {
-	var a, b, c float64
+	var ecuacion string
 
-	fmt.Println("Ingrese el valor de a: ")
-	fmt.Scanln(&a)
+	fmt.Println("Ingrese la ecuación ")
+	fmt.Scanln(&ecuacion)
 
-	fmt.Println("Ingrese el valor de b: ")
-	fmt.Scanln(&b)
+	f := funciones.FuncionCuadratica{Ecuacion: ecuacion}
 
-	fmt.Println("Ingrese el valor de c: ")
-	fmt.Scanln(&c)
-
-	fc := funciones.NuevaFuncionCuadratica(1, -3, 2)
-	x1, x2 := fc.CalcularFuncionCuadratica()
+	x1, x2, err := f.Resolver()
+	if err != nil {
+		fmt.Println(err)
+		v.MostrarMenu()
+	}
 
 	fmt.Printf("x1: %.2f\n", x1)
 	fmt.Printf("x2: %.2f\n", x2)
@@ -255,6 +266,80 @@ func MenuTriangulo(v *VistasCalculadora) {
 
 	fmt.Printf("Área del triangulo: %.2f\n", interfazFigura.CalculateArea())
 	fmt.Printf("Perímetro del triangulo: %.2f\n", interfazFigura.CalcularPerimetro())
+
+	v.MostrarMenu()
+}
+
+func MenuPalindromo(v *VistasCalculadora) {
+	var palabra string
+
+	fmt.Println("Ingrese una palabra: ")
+	fmt.Scanln(&palabra)
+
+	if funciones.ValidarPalindromo(palabra) {
+		fmt.Println("La palabra es un palindromo")
+	} else {
+		fmt.Println("La palabra no es un palindromo")
+	}
+
+	v.MostrarMenu()
+}
+
+func GenerarArreglo(v *VistasCalculadora) {
+	arreglo := funciones.Arreglo{}
+	arreglo.GenerarArreglo()
+	fmt.Println(arreglo.Valores)
+	v.MostrarMenu()
+}
+
+func CalcularEstadisticas(v *VistasCalculadora) {
+
+	var n1, n2, n3, n4 float64
+
+	fmt.Println("Ingrese el primer numero: ")
+	fmt.Scanln(&n1)
+
+	fmt.Println("Ingrese el segundo numero: ")
+	fmt.Scanln(&n2)
+
+	fmt.Println("Ingrese el tercer numero: ")
+	fmt.Scanln(&n3)
+
+	fmt.Println("Ingrese el cuarto numero: ")
+	fmt.Scanln(&n4)
+
+	resultado := funciones.CalcularEstadisticas(n1, n2, n3, n4)
+
+	fmt.Printf("Mínimo: %v\n", resultado.Minimo)
+	fmt.Printf("Máximo: %v\n", resultado.Maximo)
+	fmt.Printf("Promedio: %v\n", resultado.Promedio)
+	fmt.Printf("Varianza: %v\n", resultado.Varianza)
+	fmt.Printf("Desviación Estándar: %v\n", resultado.DesviacionEstandar)
+
+	v.MostrarMenu()
+}
+
+func OrdenarArreglo(v *VistasCalculadora) {
+
+	var n1, n2, n3, n4 int
+
+	fmt.Println("Ingrese el primer numero: ")
+	fmt.Scanln(&n1)
+
+	fmt.Println("Ingrese el segundo numero: ")
+	fmt.Scanln(&n2)
+
+	fmt.Println("Ingrese el tercer numero: ")
+	fmt.Scanln(&n3)
+
+	fmt.Println("Ingrese el cuarto numero: ")
+	fmt.Scanln(&n4)
+
+	numeros := funciones.CuatroNumeros{A: n1, B: n2, C: n3, D: n4}
+
+	ordenado := numeros.Ordenar()
+
+	fmt.Println("Arreglo ordenado:", ordenado)
 
 	v.MostrarMenu()
 }
